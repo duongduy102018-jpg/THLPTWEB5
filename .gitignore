@@ -1,0 +1,39 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.rsuser
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/
+
+# ASP.NET / .NET
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+# NuGet
+packages/
+*.nupkg
+
+# Database local
+*.mdf
+*.ldf
+*.db
+*.sqlite
+*.sqlite3
+
+# App settings riêng
+appsettings.Development.json
+
+# Windows
+Thumbs.db
+Desktop.ini

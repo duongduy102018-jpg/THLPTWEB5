@@ -1,0 +1,2 @@
+@{ ViewData["Title"] = "Không có quyền"; }
+<div class="container py-5"><div class="empty-state"><div class="empty-icon">🔒</div><h3>Bạn không có quyền truy cập</h3><p>User chỉ được mua sản phẩm, xem chi tiết và theo dõi đơn hàng. Chỉ Admin được thêm/sửa/xóa sản phẩm và cập nhật trạng thái đơn.</p><div class="d-flex justify-content-center gap-2 flex-wrap"><a asp-controller="Product" asp-action="Index" class="btn btn-success px-4">Về cửa hàng</a><a asp-controller="Account" asp-action="Login" class="btn btn-outline-success px-4">Đăng nhập tài khoản khác</a></div></div></div>

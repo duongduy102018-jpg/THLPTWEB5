@@ -1,0 +1,19 @@
+@model Webbanhang.Models.CartSummaryViewModel
+@{ ViewData["Title"] = "Đặt hàng"; }
+<section class="page-hero"><div class="container position-relative"><span class="hero-badge">📦 Thanh toán</span><h1 class="fw-bold mt-3 display-5">Hoàn tất thông tin giao hàng</h1><p>Đơn hàng sẽ được lưu vào database và hiển thị trong trang theo dõi đơn hàng.</p></div></section>
+<div class="container py-5">
+    <div class="checkout-progress mb-4"><div class="active">1. Giỏ hàng</div><div class="active">2. Thông tin giao hàng</div><div>3. Hoàn tất</div></div>
+    <div class="row g-4">
+        <div class="col-lg-7"><div class="soft-card p-4 p-lg-5"><span class="hero-badge">Thông tin người nhận</span><h2 class="fw-bold mt-3">Xác nhận đặt hàng</h2><p class="text-muted">Vui lòng nhập thông tin chính xác để cửa hàng liên hệ và giao hàng.</p>
+            <form asp-action="ConfirmOrder" asp-controller="Cart" method="post" class="row g-3">@Html.AntiForgeryToken()
+                <div class="col-md-6"><label class="form-label">Họ tên</label><input name="customerName" class="form-control form-control-lg" placeholder="Nguyễn Văn A" required /></div>
+                <div class="col-md-6"><label class="form-label">Số điện thoại</label><input name="phone" class="form-control form-control-lg" placeholder="0909 000 000" required /></div>
+                <div class="col-12"><label class="form-label">Địa chỉ giao hàng</label><input name="address" class="form-control form-control-lg" placeholder="Số nhà, đường, phường/xã, quận/huyện" required /></div>
+                <div class="col-12"><label class="form-label">Phương thức thanh toán</label><select name="paymentMethod" class="form-select form-select-lg"><option value="COD">Thanh toán khi nhận hàng (COD)</option><option value="BankTransfer">Chuyển khoản ngân hàng</option><option value="Momo">Ví MoMo / ví điện tử</option></select></div>
+                <div class="col-12"><label class="form-label">Ghi chú</label><textarea name="note" class="form-control" rows="4" placeholder="VD: giao sau 18h, chọn trái vừa chín..."></textarea></div>
+                <div class="col-12 d-flex flex-wrap gap-2"><button type="submit" class="btn btn-success btn-lg px-4">Xác nhận đặt hàng</button><a asp-action="Index" class="btn btn-outline-secondary btn-lg px-4">Quay lại giỏ hàng</a></div>
+            </form>
+        </div></div>
+        <div class="col-lg-5"><div class="cart-summary"><h4>Đơn hàng của bạn</h4>@foreach (var item in Model.Items){<div class="summary-row"><span>@item.ProductName x @item.Quantity</span><strong>@item.Total.ToString("N0") VNĐ</strong></div>}<hr /><div class="summary-row"><span>Tạm tính</span><strong>@Model.Subtotal.ToString("N0") VNĐ</strong></div><div class="summary-row"><span>Giảm giá</span><strong>-@Model.Discount.ToString("N0") VNĐ</strong></div><div class="summary-row"><span>Phí giao hàng</span><strong>@(Model.FreeShipping ? "Miễn phí" : Model.ShippingFee.ToString("N0") + " VNĐ")</strong></div><div class="summary-row total"><span>Tổng cộng</span><strong>@Model.GrandTotal.ToString("N0") VNĐ</strong></div></div></div>
+    </div>
+</div>
